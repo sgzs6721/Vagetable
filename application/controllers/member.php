@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: text/html;charset=utf-8");
 
 class Member extends MY_Controller{
 
@@ -12,19 +13,19 @@ class Member extends MY_Controller{
 		$this->cismarty->view('login.tpl');
 	}
 
-	public function login()
+	public function check()
 	{
-		$this->load->database();
-		$this->load->model('model_member');
-		if ($this->model_member->verify_member($this->input->post()))
+		$this->load->model('members');
+
+		#TODO Use Ajax dynamic verify name and passwd
+		if ($this->members->verify_member($this->input->post()))
 		{
-			$this->session->set_userdata('memberName',$this->input->post('memberName'));
-			echo $this->session->userdata('memberName');
+			$this->session->set_userdata('memberName',$this->input->post('name'));
 			$this->load->view('home');
 		}
 		else
 		{
-			$this->load->view('login');
+			$this->cismarty->view('login.tpl');
 		}
 	}
 
