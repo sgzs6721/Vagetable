@@ -18,7 +18,6 @@
         <span class="pf-help">请输入密码</span><div id="passwordmessage"></div>
       </div>
     </div>
-
     
     <div class="pf-button">
       <input type="submit" class="btn btn-submit" value="登 录" />

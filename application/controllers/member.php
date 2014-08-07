@@ -10,7 +10,7 @@ class Member extends MY_Controller{
 
 	public function index()
 	{
-		$this->cismarty->view('member_login.tpl');
+		$this->cismarty->view('pages/member_login.tpl');
 	}
 
 	public function login_check()
