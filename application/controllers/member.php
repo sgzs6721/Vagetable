@@ -10,28 +10,56 @@ class Member extends MY_Controller{
 
 	public function index()
 	{
-		$this->cismarty->view('login.tpl');
+		$this->cismarty->view('member_login.tpl');
 	}
 
-	public function check()
+	public function login_check()
 	{
 		$this->load->model('members');
 
 		#TODO Use Ajax dynamic verify name and passwd
 		if ($this->members->verify_member($this->input->post()))
 		{
-			$this->session->set_userdata('memberName',$this->input->post('name'));
+			$this->session->set_userdata('memberName',$this->input->post('username'));
 			$this->load->view('home');
 		}
 		else
 		{
-			$this->cismarty->view('login.tpl');
+			$this->cismarty->view('member_login.tpl');
 		}
 	}
 
 	public function add()
 	{
+		if( $this->checkLogin() )
+		{
+			$this->load->model('members');
+			if($this->members->is_admin($this->session->userdata['memberName']))
+			{
+				$this->load->library('form_validation');
 
+				#TODO Add the rules of validation for member login, this is for server site validation
+				$this->form_validation->set_rules('goodcode', 'Username', 'numeric');
+
+				if(! $this->form_validation->run())
+				{
+					$this->cismarty->view($this->tabledata,'pages/member_add.tpl');
+				}
+				else
+				{
+					$this->members->add_member($this->input->post());
+					$this->cismarty->view('member_inspect.tpl',$this->input->post());
+				}
+			}
+			else
+			{
+				$this->load->view('warning');
+			}
+		}
+		else
+		{
+			$this->cismarty->view('member_login.tpl');
+		}
 	}
 
 }

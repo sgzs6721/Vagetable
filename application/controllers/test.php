@@ -8,4 +8,9 @@ class Test extends MY_Controller{
 		$data_array = array('name' => 'lei.wang', );
 		$this->cismarty->view('home.tpl',$data_array);
 	}
+
+	public function add_member()
+	{
+		$this->cismarty->view('pages/member_add.tpl');
+	}
 }

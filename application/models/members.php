@@ -6,6 +6,7 @@ class Members extends CI_Model {
 
 	function __construct() {
 		parent::__construct();
+		$this->admins = $this->get_admins();
 	}
 	
 	/*  check the account's passwd is right
@@ -14,11 +15,28 @@ class Members extends CI_Model {
 	*/
 	function verify_member($login_array)
 	{
-		$q = $this->db->where('name', $login_array['name'])
+		$query_data = $this->db->where('username', $login_array['username'])
 					  ->where('passwd', md5($login_array['passwd']))->limit(1)->get('member');
 
-		if($q->num_rows > 0) return true;
+		if($query_data->num_rows > 0) return true;
 
 		return false;
+	}
+
+	function get_admins()
+	{
+		$query_data = $this->db->select('username')->where('permission','0')->get('member');
+        $names = array();
+        foreach ($query_data->result_array() as $row)
+            $names[] = $row['username'];
+        return $names;
+	}
+
+	function is_admin($username)
+	{
+		if (in_array($username,$this->admins))
+            return true;
+        else
+            return false;
 	}
 }
