@@ -42,6 +42,13 @@ class Members extends CI_Model {
 		return $current_time;
 	}
 
+	function get_member_info($member)
+	{
+		$member_data = $this->db->select('username,realname,email,phone')
+								->where('username',$member)->get('member')->first_row('array');
+		return $member_data;
+	}
+
 	function get_admins()
 	{
 		$query_data = $this->db->select('username')->where('permission','0')->get('member');

@@ -31,7 +31,7 @@ class Member extends MY_Controller{
 
 	public function add()
 	{
-		if( $this->checkLogin() )
+		if( $this->check_login() )
 		{
 			$this->load->model('members');
 			if($this->members->is_admin($this->session->userdata['memberName']))
@@ -55,6 +55,20 @@ class Member extends MY_Controller{
 			{
 				$this->load->view('warning');
 			}
+		}
+		else
+		{
+			$this->cismarty->view('pages/member_login.tpl');
+		}
+	}
+
+	public function update()
+	{
+		if( $this->check_login() )
+		{
+			$this->load->model('members');
+			$member_info = $this->members->get_member_info($this->session->userdata['memberName']);
+			$this->cismarty->view('member_update.tpl',$member_info);
 		}
 		else
 		{

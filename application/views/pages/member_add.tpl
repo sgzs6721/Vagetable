@@ -7,15 +7,15 @@
 
 jQuery(document).ready( function() {
   // binds form submission and fields to the validation engine
-  jQuery("#login").validationEngine();
-  $("#login").validationEngine("attach",{ 
+  jQuery("#addmember").validationEngine();
+  $("#addmember").validationEngine("attach",{ 
       showOneMessage:true
   });
 });
 
 </script>
 
-<form id="login" action="<%$baseUrl%>/member/add" method="post" class="pageform">
+<form id="addmember" action="<%$baseUrl%>/member/add" method="post" class="pageform">
     <div class="pf-item">
       <div class="pf-l">
         <label class="pf-label">用户名</label>

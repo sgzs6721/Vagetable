@@ -11,7 +11,7 @@ class MY_Controller extends CI_Controller {
 		$this->cismarty->assign('baseUrl','/'.basename(FCPATH));
 	}
 
-	public function checkLogin() {
+	public function check_login() {
 
 		if (isset($this->session->userdata['memberName']))
 			return $this->session->userdata['memberName'];
