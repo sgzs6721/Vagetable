@@ -25,7 +25,7 @@ class Member extends MY_Controller{
 		}
 		else
 		{
-			$this->cismarty->view('member_login.tpl');
+			$this->cismarty->view('pages/member_login.tpl');
 		}
 	}
 
@@ -39,16 +39,16 @@ class Member extends MY_Controller{
 				$this->load->library('form_validation');
 
 				#TODO Add the rules of validation for member login, this is for server site validation
-				$this->form_validation->set_rules('goodcode', 'Username', 'numeric');
+				$this->form_validation->set_rules('username', 'username', 'numeric');
 
 				if(! $this->form_validation->run())
 				{
-					$this->cismarty->view($this->tabledata,'pages/member_add.tpl');
+					$this->cismarty->view('pages/member_add.tpl');
 				}
 				else
 				{
 					$this->members->add_member($this->input->post());
-					$this->cismarty->view('member_inspect.tpl',$this->input->post());
+					$this->cismarty->view('pages/member_inspect.tpl',$this->input->post());
 				}
 			}
 			else
@@ -58,7 +58,7 @@ class Member extends MY_Controller{
 		}
 		else
 		{
-			$this->cismarty->view('member_login.tpl');
+			$this->cismarty->view('pages/member_login.tpl');
 		}
 	}
 

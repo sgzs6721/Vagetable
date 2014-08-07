@@ -23,6 +23,25 @@ class Members extends CI_Model {
 		return false;
 	}
 
+	function add_member($member_data)
+	{
+		$current_time   = date("Y-m-d H:i:s",time());
+		
+		$data = array(
+						'username'    => $member_data['username'],
+						'realname'    => $member_data['realname'],
+						'email'       => $member_data['email'],
+						'phone'       => $member_data['phone'],
+						'passwd'      => md5($member_data['passwd']),
+						'permission'  => $member_data['permission'],
+						'mdate'		  => $current_time,
+						'udate'       => $current_time,
+					);
+
+		$resl = $this->db->insert('member',$data);
+		return $current_time;
+	}
+
 	function get_admins()
 	{
 		$query_data = $this->db->select('username')->where('permission','0')->get('member');

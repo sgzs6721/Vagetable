@@ -41,15 +41,29 @@
 
     <div class="pf-item">
       <div class="pf-l">
+        <label class="pf-label">用户权限</label>
+      </div>
+      <div class="pf-r">
+          <select name="permission" id="permission" class="pf-select validate[required]" data-prompt-position="inline" data-prompt-target="permissionmessage">
+            <option value="">--选择用户权限--</option>
+            <option value="管理员">管理员</option>
+            <option value="普通用户">普通用户</option>
+          </select>
+          <span class="pf-help">请选择新增会员的级别</span><div id="permissionmessage"></div>
+        </div>
+    </div>
+
+    <div class="pf-item">
+      <div class="pf-l">
         <label class="pf-label">用户密码</label>
       </div>
       <div class="pf-r">
         <input name="passwd" data-prompt-position="inline" data-prompt-target="passwordmessage" class="pf-text validate[required]" type="text"  value="123456" readonly/>
-        <span class="pf-help">请输入密码</span><div id="passwordmessage"></div>
+        <span class="pf-help">默认密码为“123456”</span><div id="passwordmessage"></div>
       </div>
     </div>
     
     <div class="pf-button">
-      <input type="submit" class="btn btn-submit" value="登 录" />
+      <input type="submit" class="btn btn-submit" value="确 认" />
     </div>
 </form>
