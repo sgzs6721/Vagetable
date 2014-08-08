@@ -52,7 +52,7 @@ class Members extends CI_Model {
 								'phone'       => $member_info['phone'],
 								'udate'       => $current_time,
 							 );
-		
+
 		$this->db->where('username', $member_name);
 		$this->db->update('member',$update_data);
 	}
@@ -73,6 +73,23 @@ class Members extends CI_Model {
 		$member_data = $this->db->select('username,realname,email,phone')
 								->where('username',$member)->get('member')->first_row('array');
 		return $member_data;
+	}
+
+	function get_all_members($offset, $number)
+	{
+		$member_data = $this->db->select('id,username,realname,email,phone,permission,mdate,udate')
+                            ->limit($number, $offset)
+                            ->order_by('id')
+                            ->get('member')
+                            ->result_array();
+
+        return $member_data;
+	}
+
+	function get_member_number()
+	{
+		$member_number = $this->db->get('member')->num_rows();
+		return $member_number;
 	}
 
 	function get_admins()

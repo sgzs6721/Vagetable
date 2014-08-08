@@ -119,18 +119,17 @@ class Member extends MY_Controller{
 			$config['use_page_numbers']     = TRUE;
         	$config['page_query_string']    = TRUE;
 			$config['query_string_segment'] = "page";
+			$page = 1;
 
-			$this->pagination->initialize($config); 
-			if (isset($_GET['page']))
-            	$page = ($_GET['page'] == "")?1:$_GET['page'];
-        	else
-            	$page = 1;
+			if (isset($_GET['page'])) $page = ($_GET['page'] == "")?1:$_GET['page'];
+
         	$offset = ($page - 1 ) * $config['per_page'];
         	$all_members = $this->members->get_all_members($offset,$config['per_page']);
 
 			$tabledata['member_list'] = $all_members;
 			$tabledata['link'] = $this->pagination->create_links();
 
+			$this->pagination->initialize($config);
 			$this->cismarty->view('pages/member_list.tpl', $tabledata);
 		}
 		else
