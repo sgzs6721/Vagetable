@@ -1,3 +1,5 @@
+<?php echo $member_name; ?>已登录<br><br><br>
+
 <a href="<?php echo site_url('product/add/');?>">商品录入</a><br>
 <br>
 <a href="<?php echo site_url('product/inspect');?>">查看所有商品</a><br>

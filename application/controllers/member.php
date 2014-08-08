@@ -21,7 +21,8 @@ class Member extends MY_Controller{
 		if ($this->members->verify_member($this->input->post()))
 		{
 			$this->session->set_userdata('memberName',$this->input->post('username'));
-			$this->load->view('home');
+			$login_info = array('member_name' => $this->session->userdata['memberName'] );
+			$this->load->view('home',$login_info);
 		}
 		else
 		{
@@ -62,7 +63,7 @@ class Member extends MY_Controller{
 		}
 	}
 
-	public function update($member)
+	public function show_update($member)
 	{
 		if( $this->check_login() )
 		{
@@ -73,6 +74,68 @@ class Member extends MY_Controller{
 		else
 		{
 			$this->cismarty->view('pages/member_login.tpl');
+		}
+	}
+
+	public function update_info($member)
+	{
+		if( $this->check_login() )
+		{
+			$this->load->model('members');
+			$this->members->update_member_info($member,$this->input->post());
+		}
+		else
+		{
+			$this->cismarty->view('pages/member_login.tpl');
+		}
+		
+	}
+
+	public function update_pass($member)
+	{
+		if( $this->check_login() )
+		{
+			$this->load->model('members');
+			$this->members->update_member_pass($member,$this->input->post());
+		}
+		else
+		{
+			$this->cismarty->view('pages/member_login.tpl');
+		}
+	}
+
+	public function list_members()
+	{
+		if($this->check_login())
+		{
+			$this->load->library('pagination');
+			$this->load->model('members');
+
+			$config['base_url']    = site_url('member/list_member?');
+			$config['total_rows']  = $this->members->get_member_number();
+			$config['per_page']    = 2;
+			$config['first_link']  = '第一页';
+			$config['last_link']   = '最后一页';
+			$config['use_page_numbers']     = TRUE;
+        	$config['page_query_string']    = TRUE;
+			$config['query_string_segment'] = "page";
+
+			$this->pagination->initialize($config); 
+			if (isset($_GET['page']))
+            	$page = ($_GET['page'] == "")?1:$_GET['page'];
+        	else
+            	$page = 1;
+        	$offset = ($page - 1 ) * $config['per_page'];
+        	$all_members = $this->members->get_all_members($offset,$config['per_page']);
+
+			$tabledata['member_list'] = $all_members;
+			$tabledata['link'] = $this->pagination->create_links();
+
+			$this->cismarty->view('pages/member_list.tpl', $tabledata);
+		}
+		else
+		{
+			redirect('login');
 		}
 	}
 

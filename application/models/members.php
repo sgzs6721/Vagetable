@@ -42,7 +42,7 @@ class Members extends CI_Model {
 		return $current_time;
 	}
 
-	function update_member_info($member_info)
+	function update_member_info($member_name, $member_info)
 	{
 		$current_time = date("Y-m-d H:i:s",time());
 		$update_data  = array(
@@ -52,17 +52,19 @@ class Members extends CI_Model {
 								'phone'       => $member_info['phone'],
 								'udate'       => $current_time,
 							 );
-
+		
+		$this->db->where('username', $member_name);
 		$this->db->update('member',$update_data);
 	}
 
-	function update_member_pass($member_pass)
+	function update_member_pass($member_name, $member_pass)
 	{
 		$current_time = date("Y-m-d H:i:s",time());
 		$update_data  = array(
 								'passwd'      => md5($member_pass['passwd']),
 							 );
 
+		$this->db->where('username', $member_name);
 		$this->db->update('member',$update_data);
 	}
 
