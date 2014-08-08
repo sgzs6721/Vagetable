@@ -61,7 +61,7 @@ class Members extends CI_Model {
 	{
 		$current_time = date("Y-m-d H:i:s",time());
 		$update_data  = array(
-								'passwd'      => md5($member_pass['passwd']),
+								'passwd' => md5($member_pass['passwd']),
 							 );
 
 		$this->db->where('username', $member_name);

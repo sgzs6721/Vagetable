@@ -111,7 +111,7 @@ class Member extends MY_Controller{
 			$this->load->library('pagination');
 			$this->load->model('members');
 
-			$config['base_url']    = site_url('member/list_member?');
+			$config['base_url']    = site_url('member/list_members?');
 			$config['total_rows']  = $this->members->get_member_number();
 			$config['per_page']    = 2;
 			$config['first_link']  = '第一页';
@@ -126,15 +126,16 @@ class Member extends MY_Controller{
         	$offset = ($page - 1 ) * $config['per_page'];
         	$all_members = $this->members->get_all_members($offset,$config['per_page']);
 
-			$tabledata['member_list'] = $all_members;
-			$tabledata['link'] = $this->pagination->create_links();
+        	$this->pagination->initialize($config);
+			$member_data['member_list'] = $all_members;
+			$member_data['link'] = $this->pagination->create_links();
 
-			$this->pagination->initialize($config);
-			$this->cismarty->view('pages/member_list.tpl', $tabledata);
+			// var_dump($member_data);
+			$this->cismarty->view('pages/member_list.tpl', $member_data);
 		}
 		else
 		{
-			redirect('login');
+			$this->cismarty->view('pages/member_login.tpl');
 		}
 	}
 
