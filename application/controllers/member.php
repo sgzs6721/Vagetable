@@ -62,13 +62,13 @@ class Member extends MY_Controller{
 		}
 	}
 
-	public function update()
+	public function update($member)
 	{
 		if( $this->check_login() )
 		{
 			$this->load->model('members');
-			$member_info = $this->members->get_member_info($this->session->userdata['memberName']);
-			$this->cismarty->view('member_update.tpl',$member_info);
+			$member_info = $this->members->get_member_info($member);
+			$this->cismarty->view('pages/member_update.tpl',$member_info);
 		}
 		else
 		{

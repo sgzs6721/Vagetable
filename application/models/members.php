@@ -25,7 +25,7 @@ class Members extends CI_Model {
 
 	function add_member($member_data)
 	{
-		$current_time   = date("Y-m-d H:i:s",time());
+		$current_time = date("Y-m-d H:i:s",time());
 		
 		$data = array(
 						'username'    => $member_data['username'],
@@ -40,6 +40,30 @@ class Members extends CI_Model {
 
 		$resl = $this->db->insert('member',$data);
 		return $current_time;
+	}
+
+	function update_member_info($member_info)
+	{
+		$current_time = date("Y-m-d H:i:s",time());
+		$update_data  = array(
+								'username'    => $member_info['username'],
+								'realname'    => $member_info['realname'],
+								'email'       => $member_info['email'],
+								'phone'       => $member_info['phone'],
+								'udate'       => $current_time,
+							 );
+
+		$this->db->update('member',$update_data);
+	}
+
+	function update_member_pass($member_pass)
+	{
+		$current_time = date("Y-m-d H:i:s",time());
+		$update_data  = array(
+								'passwd'      => md5($member_pass['passwd']),
+							 );
+
+		$this->db->update('member',$update_data);
 	}
 
 	function get_member_info($member)
