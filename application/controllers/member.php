@@ -111,21 +111,22 @@ class Member extends MY_Controller{
 			$this->load->library('pagination');
 			$this->load->model('members');
 
-			$config['base_url']    = site_url('member/list_members?');
+			$config['base_url']    = site_url('member/list_members');
 			$config['total_rows']  = $this->members->get_member_number();
 			$config['per_page']    = 2;
 			$config['first_link']  = '第一页';
 			$config['last_link']   = '最后一页';
+			$config['uri_segment'] = 3;
 			$config['use_page_numbers']     = TRUE;
-        	$config['page_query_string']    = TRUE;
-			$config['query_string_segment'] = "page";
-			$page = 1;
 
-			if (isset($_GET['page'])) $page = ($_GET['page'] == "")?1:$_GET['page'];
+			// $config['page_query_string']    = TRUE;
+			// $config['query_string_segment'] = "page";
+			// $page = 1;
+			// if (isset($_GET['page'])) $page = ($_GET['page'] == "")?1:$_GET['page'];
+			// $offset = ($page - 1 ) * $config['per_page'];
 
-        	$offset = ($page - 1 ) * $config['per_page'];
+        	$offset = intval($this->uri->segment(3));
         	$all_members = $this->members->get_all_members($offset,$config['per_page']);
-
         	$this->pagination->initialize($config);
 			$member_data['member_list'] = $all_members;
 			$member_data['link'] = $this->pagination->create_links();
