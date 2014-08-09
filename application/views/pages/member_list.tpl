@@ -22,7 +22,7 @@
 </div>
 
 <script type="text/javascript">
-	$(".pagination1 a").live('click',function(){
+	$(".pagination a").live('click',function(){
 		var url = $(this).attr('href');
 
 		$.ajax({
