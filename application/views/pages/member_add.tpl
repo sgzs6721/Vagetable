@@ -63,8 +63,8 @@ jQuery(document).ready( function() {
       <div class="pf-r">
           <select name="permission" id="permission" class="pf-select validate[required]" data-prompt-position="inline" data-prompt-target="permissionmessage">
             <option value="">--选择用户权限--</option>
-            <option value="管理员">管理员</option>
-            <option value="普通用户">普通用户</option>
+            <option value="0">管理员</option>
+            <option value="1">普通用户</option>
           </select>
           <span class="pf-help">请选择新增会员的级别</span><div id="permissionmessage"></div>
         </div>

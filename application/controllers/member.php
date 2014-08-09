@@ -118,6 +118,28 @@ class Member extends MY_Controller{
 		}
 	}
 
+	public function confirm_delete($member)
+	{
+		$this->load->model('members');
+		$member_info = $this->members->get_member_info($member);
+		$this->cismarty->view('pages/member_delete.tpl', $member_info);
+	}
+
+	public function delete_member($member)
+	{
+		if($this->check_login())
+		{
+			$this->load->model('members');
+			$this->members->delete_member($member);
+			#TODO confirm whether the member is deleted
+			redirect('member/list_members');
+		}
+		else
+		{
+			$this->cismarty->view('pages/member_login.tpl');
+		}
+	}
+
 	public function list_members()
 	{
 		if($this->check_login())

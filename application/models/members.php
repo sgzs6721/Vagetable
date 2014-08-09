@@ -92,6 +92,11 @@ class Members extends CI_Model {
 		return $member_number;
 	}
 
+	function delete_member($member)
+	{
+		$this->db->delete('member', array('username' => $member));
+	}
+
 	function get_admins()
 	{
 		$query_data = $this->db->select('username')->where('permission','0')->get('member');
