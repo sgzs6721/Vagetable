@@ -70,7 +70,7 @@ class Members extends CI_Model {
 
 	function get_member_info($member)
 	{
-		$member_data = $this->db->select('username,realname,email,phone')
+		$member_data = $this->db->select('username,realname,email,phone,permission')
 								->where('username',$member)->get('member')->first_row('array');
 		return $member_data;
 	}

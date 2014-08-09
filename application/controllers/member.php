@@ -104,6 +104,20 @@ class Member extends MY_Controller{
 		}
 	}
 
+	public function inspect_member($member)
+	{
+		if($this->check_login())
+		{
+			$this->load->model('members');
+			$member_info = $this->members->get_member_info($member);
+			$this->cismarty->view('pages/member_inspect.tpl', $member_info);
+		}
+		else
+		{
+			$this->cismarty->view('pages/member_login.tpl');
+		}
+	}
+
 	public function list_members()
 	{
 		if($this->check_login())

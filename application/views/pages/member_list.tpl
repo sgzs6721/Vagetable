@@ -8,7 +8,7 @@
 			<tr>
 				<%foreach from=$row key=keys item=value %>
 					<%if $keys eq 'username'%>
-						<td><a href="<%$baseUrl%>/member/inspect/<%$value%>"><%$value%></a></td>
+						<td><a href="<%$baseUrl%>/member/inspect_member/<%$value%>"><%$value%></a></td>
 					<%else%>
 						<td><%$value%></td>
 					<%/if%>
