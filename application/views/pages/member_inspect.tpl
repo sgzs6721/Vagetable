@@ -4,4 +4,5 @@
 用户权限:<%$permission%><br>
 
 <a href='<%$baseUrl%>/member/show_update/<%$username%>'>修改</a>
-<a href='<%$baseUrl%>/member/confirm_delete/<%$username%>'>删除</a>
+<a href='<%$baseUrl%>/member/confirm_delete/<%$username%>'>删除</a><br>
+<a href='<%$baseUrl%>/member/list_members'>查看所有用户</a><br>

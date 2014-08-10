@@ -13,6 +13,10 @@
 						<td><%$value%></td>
 					<%/if%>
 				<%/foreach%>
+				<td>
+					<a href='<%$baseUrl%>/member/show_update/<%$row.username%>'>修改</a>
+					<a href='<%$baseUrl%>/member/confirm_delete/<%$row.username%>'>删除</a>
+				</td>
 			</tr>
 
 		<%/foreach%>
