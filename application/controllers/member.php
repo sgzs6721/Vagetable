@@ -138,8 +138,22 @@ class Member extends MY_Controller{
 	public function confirm_delete($member)
 	{
 		$this->load->model('members');
-		$member_info = $this->members->get_member_info($member);
-		$this->cismarty->view('pages/member_delete.tpl', $member_info);
+		if($this->members->is_admin($this->session->userdata['memberName']))
+		{
+			$member_info = $this->members->get_member_info($member);
+			if(count($member_info) > 0)
+			{
+				$this->cismarty->view('pages/member_delete.tpl', $member_info);
+			}
+			else
+			{
+				echo 'member '.$member.' does not exist';
+			}
+		}
+		else
+		{
+			$this->load->view('warning');
+		}
 	}
 
 	public function delete_member($member)
@@ -147,13 +161,20 @@ class Member extends MY_Controller{
 		if($this->check_login())
 		{
 			$this->load->model('members');
-			$this->members->delete_member($member);
-			#TODO confirm whether the member is deleted
-			redirect('member/list_members');
+			if($this->members->is_admin($this->session->userdata['memberName']))
+			{
+				$this->members->delete_member($member);
+				#TODO confirm whether the member is deleted
+				redirect('member/list_members');
+				// $this->list_members();
+			}
+			else
+			{
+				$this->load->view('warning');
+			}
 		}
 		else
 		{
-			$this->list_members();
 			$this->cismarty->view('pages/member_login.tpl');
 		}
 	}
@@ -183,7 +204,7 @@ class Member extends MY_Controller{
         	$all_members = $this->members->get_all_members($offset,$config['per_page']);
         	$this->pagination->initialize($config);
 			$member_data['member_list'] = $all_members;
-			$member_data['link'] = $this->pagination->create_links();
+			$member_data['link'] = $this->pagination->create_links(TRUE);
 
 			// var_dump($member_data);
 			$this->cismarty->view('pages/member_list.tpl', $member_data);
