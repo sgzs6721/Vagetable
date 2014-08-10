@@ -10,6 +10,23 @@ class Member extends MY_Controller{
 
 	public function index()
 	{
+		/* set cookie for the last page, later to research this part
+
+		$request_url = $_SERVER['PATH_INFO'];
+
+		if($request_url != 'member' && $request_url != 'member/index' && $request_url != 'member/logout' && $request_url != 'member/login_check')
+		{
+			$this->input->set_cookie('lasturl', $request_url, 60);
+		}
+
+		*/
+		$this->cismarty->view('pages/member_login.tpl');
+	}
+
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		// session_unset();
 		$this->cismarty->view('pages/member_login.tpl');
 	}
 
@@ -136,6 +153,7 @@ class Member extends MY_Controller{
 		}
 		else
 		{
+			$this->list_members();
 			$this->cismarty->view('pages/member_login.tpl');
 		}
 	}
@@ -172,7 +190,8 @@ class Member extends MY_Controller{
 		}
 		else
 		{
-			$this->cismarty->view('pages/member_login.tpl');
+			// $this->cismarty->view('pages/member_login.tpl');
+			$this->index();
 		}
 	}
 
