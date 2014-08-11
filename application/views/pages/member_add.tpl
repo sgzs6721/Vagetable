@@ -75,7 +75,7 @@ jQuery(document).ready( function() {
         <label class="pf-label">用户密码</label>
       </div>
       <div class="pf-r">
-        <input name="passwd" data-prompt-position="inline" data-prompt-target="passwordmessage" class="pf-text validate[required]" type="text"  value="123456" readonly/>
+        <input name="passwd" data-prompt-position="inline" data-prompt-target="passwordmessage" class="pf-text validate[required]" type="password"  value="123456" readonly/>
         <span class="pf-help">默认密码为“123456”</span><div id="passwordmessage"></div>
       </div>
     </div>

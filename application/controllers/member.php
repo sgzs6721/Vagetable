@@ -20,7 +20,14 @@ class Member extends MY_Controller{
 		}
 
 		*/
-		$this->cismarty->view('pages/member_login.tpl');
+		if( $this->check_login() )
+		{
+			$this->load->view('home');
+		}
+		else
+		{
+			$this->cismarty->view('pages/member_login.tpl');
+		}
 	}
 
 	public function logout()
@@ -32,6 +39,7 @@ class Member extends MY_Controller{
 
 	public function login_check()
 	{
+		
 		$this->load->model('members');
 
 		#TODO Use Ajax dynamic verify name and passwd
@@ -66,7 +74,9 @@ class Member extends MY_Controller{
 				else
 				{
 					$this->members->add_member($this->input->post());
-					$this->cismarty->view('pages/member_inspect.tpl',$this->input->post());
+					$inspect_info = $this->input->post();
+					$inspect_info['is_admin'] = 1;
+					$this->cismarty->view('pages/member_inspect.tpl',$inspect_info);
 				}
 			}
 			else
@@ -85,8 +95,16 @@ class Member extends MY_Controller{
 		if( $this->check_login() )
 		{
 			$this->load->model('members');
-			$member_info = $this->members->get_member_info($member);
-			$this->cismarty->view('pages/member_update.tpl',$member_info);
+			if( $this->members->is_admin( $this->session->userdata['memberName'] )
+				|| $member == $this->session->userdata['memberName'] )
+			{
+				$member_info = $this->members->get_member_info($member);
+				$this->cismarty->view('pages/member_update.tpl',$member_info);
+			}
+			else
+			{
+				$this->load->view('warning');
+			}
 		}
 		else
 		{
@@ -99,7 +117,15 @@ class Member extends MY_Controller{
 		if( $this->check_login() )
 		{
 			$this->load->model('members');
-			$this->members->update_member_info($member,$this->input->post());
+			if( $this->members->is_admin( $this->session->userdata['memberName'] )
+				|| $member == $this->session->userdata['memberName'] )
+			{
+				$this->members->update_member_info($member,$this->input->post());
+			}
+			else
+			{
+				$this->load->view('warning');
+			}
 		}
 		else
 		{
@@ -127,6 +153,8 @@ class Member extends MY_Controller{
 		{
 			$this->load->model('members');
 			$member_info = $this->members->get_member_info($member);
+			$member_info['is_admin'] = 0;
+			if($this->members->is_admin($this->session->userdata['memberName'])) $member_info['is_admin'] = 1;
 			$this->cismarty->view('pages/member_inspect.tpl', $member_info);
 		}
 		else
@@ -205,6 +233,8 @@ class Member extends MY_Controller{
         	$this->pagination->initialize($config);
 			$member_data['member_list'] = $all_members;
 			$member_data['link'] = $this->pagination->create_links(TRUE);
+			$member_data['is_admin'] = 0;
+			if($this->members->is_admin($this->session->userdata['memberName'])) $member_data['is_admin'] = 1;
 
 			// var_dump($member_data);
 			$this->cismarty->view('pages/member_list.tpl', $member_data);
