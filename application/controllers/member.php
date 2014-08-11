@@ -22,7 +22,7 @@ class Member extends MY_Controller{
 		*/
 		if( $this->check_login() )
 		{
-			$this->load->view('home');
+			$this->load->view('home', array('member_name' => $this->session->userdata['memberName'] ));
 		}
 		else
 		{
@@ -64,12 +64,11 @@ class Member extends MY_Controller{
 			{
 				$this->load->library('form_validation');
 
-				#TODO Add the rules of validation for member login, this is for server site validation
-				$this->form_validation->set_rules('username', 'username', 'numeric');
-
 				if(! $this->form_validation->run())
 				{
+					echo validation_errors();
 					$this->cismarty->view('pages/member_add.tpl');
+
 				}
 				else
 				{
