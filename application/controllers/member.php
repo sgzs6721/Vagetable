@@ -55,6 +55,14 @@ class Member extends MY_Controller{
 		}
 	}
 
+	public function ajaxValidateFieldUser()
+	{
+		$this->load->model('members');
+
+		$data_array = array($_GET['fieldId'],$this->members->check_member_exist($_GET['fieldValue']));
+		echo Json_encode($data_array);
+	}
+
 	public function add()
 	{
 		if( $this->check_login() )

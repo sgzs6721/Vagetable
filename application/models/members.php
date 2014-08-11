@@ -23,6 +23,15 @@ class Members extends CI_Model {
 		return false;
 	}
 
+	function check_member_exist($member)
+	{
+		$query_data = $this->db->where('username', $member)->limit(1)->get('member');
+
+		if($query_data->num_rows > 0) return FALSE;
+
+		return TRUE;
+	}
+
 	function add_member($member_data)
 	{
 		$current_time = date("Y-m-d H:i:s",time());

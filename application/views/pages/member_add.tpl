@@ -21,8 +21,8 @@ jQuery(document).ready( function() {
         <label class="pf-label">用户名</label>
       </div>
       <div class="pf-r">
-        <input name="username" data-prompt-position="inline" data-prompt-target="namemessage" class="pf-text validate[required]" type="text"  value=""/>
-        <span class="pf-help">请输入登录的用户名</span><div id="namemessage"></div>
+        <input name="username" data-prompt-position="inline" data-prompt-target="namemessage" class="pf-text validate[required,ajax[ajaxUserCall]]]" type="text" id='username' value=""/>
+        <span class="pf-help" id="namemessage">请输入登录的用户名</span>
       </div>
     </div>
 
