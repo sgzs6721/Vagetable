@@ -1,4 +1,8 @@
 <script src="<%$baseUrl%>/js/jquery.1.7.0.js"></script>
+<script src="<%$baseUrl%>/js/ajax3.0.js"></script>
+<script type="text/javascript">
+var ajax = new Ajax();
+</script>
 
 <div id='ajaxinfo'>
 
@@ -13,7 +17,7 @@
 						<td><%$value%></td>
 					<%/if%>
 				<%/foreach%>
-				<%if $is_admin eq 0%>
+				<%if $is_admin %>
 					<td>
 						<a href='<%$baseUrl%>/member/show_update/<%$row.username%>'>修改</a>
 						<a href='<%$baseUrl%>/member/confirm_delete/<%$row.username%>'>删除</a>
@@ -30,14 +34,24 @@
 <script type="text/javascript">
 	$(".pagination a").live('click',function(){
 		var url = $(this).attr('href');
+		// $.ajax({
+		// 	url: url,
+		// 	dataType: 'html',
+		// 	success: function(data){
+		// 		$("#ajaxinfo").html(data);
+		// 	}
+		// });
 
-		$.ajax({
-			url: url,
-			success: function(data){
-				$("#ajaxinfo").html(data);
-			}
-		});
+		if(url!='undefined'){
+		      ajax.get(url,function(data){
+		            $("#ajaxinfo").html(data);
+		      });
+		}
 
+		// $.get(url, function(data){
+		// 	alert('request');
+		// 	$('#ajaxinfo').html(data);
+		// });
 		return false;
 	});
 </script>

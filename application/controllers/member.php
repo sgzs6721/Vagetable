@@ -216,7 +216,7 @@ class Member extends MY_Controller{
 
 			$config['base_url']    = site_url('member/list_members');
 			$config['total_rows']  = $this->members->get_member_number();
-			$config['per_page']    = 2;
+			$config['per_page']    = 10;
 			$config['first_link']  = '第一页';
 			$config['last_link']   = '最后一页';
 			$config['uri_segment'] = 3;
@@ -232,11 +232,10 @@ class Member extends MY_Controller{
         	$all_members = $this->members->get_all_members($offset,$config['per_page']);
         	$this->pagination->initialize($config);
 			$member_data['member_list'] = $all_members;
-			$member_data['link'] = $this->pagination->create_links(TRUE);
+			$member_data['link'] = $this->pagination->create_links();
 			$member_data['is_admin'] = 0;
 			if($this->members->is_admin($this->session->userdata['memberName'])) $member_data['is_admin'] = 1;
 
-			// var_dump($member_data);
 			$this->cismarty->view('pages/member_list.tpl', $member_data);
 		}
 		else
