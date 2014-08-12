@@ -11,6 +11,6 @@ class Test extends MY_Controller{
 
 	public function plupload()
 	{
-		$this->cismarty->view('plupload.tpl');
+		$this->load->view('plupload');
 	}
 }

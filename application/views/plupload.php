@@ -6,14 +6,14 @@
 <title>Plupload - jQuery UI Widget</title>
 
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" type="text/css" />
-<link rel="stylesheet" href="<%$baseUrl%>/js/plupload/jquery.ui.plupload/css/jquery.ui.plupload.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo base_url('/js/plupload/jquery.ui.plupload/css/jquery.ui.plupload.css');?>" type="text/css" />
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
 
 <!-- production -->
-<script type="text/javascript" src="<%$baseUrl%>/js/plupload/plupload.full.min.js"></script>
-<script type="text/javascript" src="<%$baseUrl%>/js/plupload/jquery.ui.plupload/jquery.ui.plupload.js"></script>
+<script type="text/javascript" src="<?php echo base_url('/js/plupload/plupload.full.min.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('/js/plupload/jquery.ui.plupload/jquery.ui.plupload.js');?>"></script>
 
 <!-- debug 
 <script type="text/javascript" src="../../js/moxie.js"></script>
@@ -34,14 +34,14 @@
 
 	<input type="submit" value="Submit" />
 </form>
-<!--
+
 <script type="text/javascript">
 // Initialize the widget when the DOM is ready
 $(function() {
 	$("#uploader").plupload({
 		// General settings
 		runtimes : 'html5,flash,silverlight,html4',
-		url : '../upload.php',
+		url : 'upload.php',
 
 		// User can upload no more then 20 files in one go (sets multiple_queues to false)
 		max_file_count: 20,
@@ -108,6 +108,6 @@ $(function() {
 	});
 });
 </script>
--->
+
 </body>
 </html>
