@@ -26,7 +26,7 @@
 
 <h1>jQuery UI Widget</h1>
 
-<form id="form" method="post" action="../dump.php">
+<form id="form" method="post" action="dump.php">
 	<div id="uploader">
 		<p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
 	</div>
