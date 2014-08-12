@@ -9,8 +9,8 @@ class Test extends MY_Controller{
 		$this->cismarty->view('home.tpl',$data_array);
 	}
 
-	public function add_member()
+	public function plupload()
 	{
-		$this->cismarty->view('pages/member_add.tpl');
+		$this->cismarty->view('plupload.tpl');
 	}
 }
