@@ -15,40 +15,40 @@ jQuery(document).ready( function() {
 
 </script>
 
-<form id="addmember" action="<%$baseUrl%>/member/add" method="post" class="pageform">
+<form id="addmember" action="<%$baseUrl%>/product/add" method="post" class="pageform">
     <div class="pf-item">
       <div class="pf-l">
-        <label class="pf-label">用户名</label>
+        <label class="pf-label">商品名</label>
       </div>
       <div class="pf-r">
-        <input name="username" data-prompt-position="inline" data-prompt-target="namemessage" class="pf-text validate[required,ajax[ajaxUserCall]]" type="text" id='username' value=""/>
-        <span class="pf-help">请输入登录的用户名</span><div id="namemessage"></div>
+        <input name="name" data-prompt-position="inline" data-prompt-target="namemessage" class="pf-text validate[required,ajax[ajaxUserCall]]" type="text" id='name' value=""/>
+        <span class="pf-help">请输入商品名称</span><div id="namemessage"></div>
       </div>
     </div>
 
     <div class="pf-item">
       <div class="pf-l">
-        <label class="pf-label">用户姓名</label>
+        <label class="pf-label">商品价格</label>
       </div>
       <div class="pf-r">
-        <input name="realname" data-prompt-position="inline" data-prompt-target="realnamemessage" class="pf-text validate[required]" type="text"  value=""/>
-        <span class="pf-help">请输入姓名</span><div id="realnamemessage"></div>
+        <input name="price" data-prompt-position="inline" data-prompt-target="realnamemessage" class="pf-text validate[required]" type="text"  value=""/>
+        <span class="pf-help">请输入商品价格</span><div id="realnamemessage"></div>
       </div>
     </div>
 
     <div class="pf-item">
       <div class="pf-l">
-        <label class="pf-label">用户电话</label>
+        <label class="pf-label">会员价格</label>
       </div>
       <div class="pf-r">
         <input name="phone" data-prompt-position="inline" data-prompt-target="phonemessage" class="pf-text" type="text"  value=""/>
-        <span class="pf-help">请输入电话号码</span><div id="phonemessage"></div>
+        <span class="pf-help">请输入会员价格</span><div id="phonemessage"></div>
       </div>
     </div>
 
     <div class="pf-item">
       <div class="pf-l">
-        <label class="pf-label">用户邮箱</label>
+        <label class="pf-label">商品描述</label>
       </div>
       <div class="pf-r">
         <input name="email" data-prompt-position="inline" data-prompt-target="emailmessage" class="pf-text" type="text"  value=""/>
