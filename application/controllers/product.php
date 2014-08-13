@@ -17,19 +17,21 @@ class Product extends MY_Controller{
 			if($this->members->is_admin($this->session->userdata['memberName']))
 			{
 				$this->load->library('form_validation');
+				$this->load->model('products');
 
 				if(! $this->form_validation->run() )
 				{
 					echo validation_errors();
-					$this->cismarty->view('pages/product_add.tpl');
+					$product_info['categorylist'] = $this->products->get_category();
+						$this->cismarty->view('pages/product_add.tpl', $product_info);
 				}
 				else
-				{
-					$this->load->model('products');
+				{					
 					$this->products->add_product($this->input->post());
-					$inspect_info = $this->input->post();
-					$inspect_info['is_admin'] = 1;
-					$this->cismarty->view('pages/product_inspect.tpl',$inspect_info);
+					$product_info = $this->input->post();
+					$product_info['is_admin'] = 1;
+					
+					$this->cismarty->view('pages/product_inspect.tpl',$product_info);
 				}
 			}
 			else

@@ -9,10 +9,6 @@ class Members extends CI_Model {
 		$this->admins = $this->get_admins();
 	}
 	
-	/*  check the account's passwd is right
-	*	input: name, passwd
-	*	output: true if correct otherwise false
-	*/
 	function verify_member($login_array)
 	{
 		$query_data = $this->db->where('username', $login_array['username'])

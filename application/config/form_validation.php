@@ -26,5 +26,12 @@ $config = array(
                                             'label' => '用户电话',
                                             'rules' => 'exact_length[11]|numeric'
                                          ),
+                                    ),
+            'product/add' => array(
+                                    array(
+                                            'field' => 'name',
+                                            'label' => '商品名称',
+                                            'rules' => 'required'
+                                         )
                                     )
                );
