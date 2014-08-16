@@ -1,6 +1,6 @@
 <?php
 
-header("Content-Type: text/html;charset=utf-8");
+//header("Content-Type: text/html;charset=utf-8");
 
 class Test extends MY_Controller{
 	public function index()
@@ -9,8 +9,8 @@ class Test extends MY_Controller{
 		$this->cismarty->view('home.tpl',$data_array);
 	}
 
-	public function plupload()
+	public function image()
 	{
-		$this->load->view('plupload');
+		$this->cismarty->view('image.tpl');
 	}
 }
