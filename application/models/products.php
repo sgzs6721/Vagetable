@@ -72,19 +72,11 @@ class Products extends CI_Model {
 	function get_all_products($offset, $number)
 	{
 		$product_data = $this->db->select('id,name,desc,oprice,sprice,mprice,category,pdate,udate,picpath')
-                            ->limit($number, $offset)
-                            ->order_by('id')
-                            ->get('product')
-                            ->result_array();
-/*                            
-        foreach ($product_data as $value)
-        {
-        	if($value['picpath'] != null && $value['picpath'] != '')
-        	{
-        		$value['picpath'] = split(';', $value['picpath']);
-        	}
-        }
-*/
+                             ->limit($number, $offset)
+                             ->order_by('id')
+                             ->get('product')
+                             ->result_array();
+
         return $product_data;
 	}
 
