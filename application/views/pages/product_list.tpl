@@ -14,10 +14,11 @@ var ajax = new Ajax();
 					<%if $keys eq 'name'%>
 						<td><a href="<%$baseUrl%>/product/inspect_product/<%$value%>"><%$value%></a></td>
 					<%elseif $keys eq 'picpath'%>
-
+						<td>
 						<%foreach from=';'|explode:$value item=item%>
-							<td><img src="<%$item%>"></img></td>
+							<img src="<%$item%>"></img>
 						<%/foreach%>
+					</td>
 					<%else%>
 						<td><%$value%></td>
 					<%/if%>
