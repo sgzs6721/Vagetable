@@ -247,7 +247,7 @@ class UploadHandler
     }
 
     protected function set_additional_file_properties($file) {
-        $file->deleteUrl = $this->options['script_url'].'test/'
+        $file->deleteUrl = $this->options['script_url'].'image/upload'
             .$this->get_query_separator($this->options['script_url'])
             .$this->get_singular_param_name()
             .'='.rawurlencode($file->name);
