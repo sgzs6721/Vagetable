@@ -2,7 +2,9 @@
 <script src="<%$baseUrl%>/js/jquery.1.7.0.js"></script>
 <script src="<%$baseUrl%>/js/validation/jquery.validationEngine-zh_CN.js"></script>
 <script src="<%$baseUrl%>/js/validation/jquery.validationEngine.js"></script>
-
+<script src="<%$baseUrl%>/js/imagepicker/image-picker.js"></script>
+<script src="<%$baseUrl%>/js/imagepicker/image-picker.min.js"></script>
+<link rel="stylesheet" href="<%$baseUrl%>/css/image-picker.css">
 <script>
 
 jQuery(document).ready( function() {
@@ -18,7 +20,7 @@ jQuery(document).ready( function() {
 <form id="addproduct" action="<%$baseUrl%>/product/add" method="post" class="pageform">
     <div class="pf-item">
       <div class="pf-l">
-        <label class="pf-label">商品名</label>
+        <label class="pf-label">商品名称</label>
       </div>
       <div class="pf-r">
         <input name="name" data-prompt-position="inline" data-prompt-target="namemessage" class="pf-text validate[required,ajax[ajaxProductCall]]]" type="text" id='name' value=""/>
@@ -87,13 +89,23 @@ jQuery(document).ready( function() {
       <div class="pf-l">
         <label class="pf-label">商品图片</label>
       </div>
-      <div class="pf-r">
-        <input name="desc" data-prompt-position="inline" data-prompt-target="descmessage" class="pf-text" type="text"  value=""/>
-        <span class="pf-help">请输入商品描述信息</span><div id="descmessage"></div>
-      </div>
+      <select multiple="multiple" class="image-picker show-html" name='picpath[]'>
+        <option data-img-src="<%$baseUrl%>/images/thumbnail/1.jpg" value="<%$baseUrl%>/images/thumbnail/1.jpg">image1</option>
+        <option data-img-src="<%$baseUrl%>/images/thumbnail/2.jpg" value="<%$baseUrl%>/images/thumbnail/2.jpg">image2</option>
+        <option data-img-src="<%$baseUrl%>/images/thumbnail/3.jpg" value="<%$baseUrl%>/images/thumbnail/3.jpg">image3</option>
+        <option data-img-src="<%$baseUrl%>/images/thumbnail/4.jpg" value="<%$baseUrl%>/images/thumbnail/4.jpg">image4</option>
+      </select>
     </div>
     
     <div class="pf-button">
       <input type="submit" class="btn btn-submit" value="确 认" />
     </div>
 </form>
+
+<script type="text/javascript">
+
+    jQuery("select.image-picker").imagepicker({
+      hide_select:  true,
+    });
+
+</script>

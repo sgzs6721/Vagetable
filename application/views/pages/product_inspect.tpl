@@ -2,7 +2,11 @@
 商品价格:<%$sprice%><br>
 会员价格:<%$mprice%><br>
 商品类别:<%$category%><br>
-
+商品图片:<br>
+<%foreach from=$picpath item=item %>
+	<img src="<%$item%>"></img>
+<%/foreach%>
+<br>
 <a href='<%$baseUrl%>/product/show_update/<%$name%>'>修改</a>
 
 <%if $is_admin eq 1 %>

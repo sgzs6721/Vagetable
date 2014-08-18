@@ -18,6 +18,7 @@ class Products extends CI_Model {
 	function add_product($product_data)
 	{
 		$current_time = date("Y-m-d H:i:s",time());
+		$picture_path = join($product_data['picpath'],';');
 		
 		$data = array(
 						'name'        => $product_data['name'],
@@ -28,10 +29,11 @@ class Products extends CI_Model {
 						'category'    => $product_data['category'],
 						'pdate'		  => $current_time,
 						'udate'       => $current_time,
+						'picpath'     => $picture_path,
 					);
 
 		$resl = $this->db->insert('product',$data);
-		return $current_time;
+		return $data;
 	}
 
 	function check_product_exist($product)
@@ -74,7 +76,15 @@ class Products extends CI_Model {
                             ->order_by('id')
                             ->get('product')
                             ->result_array();
-
+/*                            
+        foreach ($product_data as $value)
+        {
+        	if($value['picpath'] != null && $value['picpath'] != '')
+        	{
+        		$value['picpath'] = split(';', $value['picpath']);
+        	}
+        }
+*/
         return $product_data;
 	}
 

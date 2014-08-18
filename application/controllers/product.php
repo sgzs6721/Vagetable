@@ -26,11 +26,10 @@ class Product extends MY_Controller{
 					$this->cismarty->view('pages/product_add.tpl', $product_info);
 				}
 				else
-				{					
-					$this->products->add_product($this->input->post());
-					$product_info = $this->input->post();
+				{
+					$product_info = $this->input->post();			
+					$this->products->add_product($product_info);
 					$product_info['is_admin'] = 1;
-					
 					$this->cismarty->view('pages/product_inspect.tpl',$product_info);
 				}
 			}
@@ -161,9 +160,9 @@ class Product extends MY_Controller{
 			$this->load->model('products');
 			$this->load->model('members');
 
-			$config['base_url']    = site_url('member/list_products');
+			$config['base_url']    = site_url('product/list_products');
 			$config['total_rows']  = $this->products->get_product_number();
-			$config['per_page']    = 10;
+			$config['per_page']    = 20;
 			$config['first_link']  = '第一页';
 			$config['last_link']   = '最后一页';
 			$config['uri_segment'] = 3;
@@ -178,7 +177,6 @@ class Product extends MY_Controller{
         	$offset = intval($this->uri->segment(3));
         	$all_products = $this->products->get_all_products($offset,$config['per_page']);
         	$this->pagination->initialize($config);
-
 			$product_data['product_list'] = $all_products;
 			$product_data['link']        = $this->pagination->create_links();
 			$product_data['is_admin']    = 0;
