@@ -3,11 +3,17 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2014 年 08 月 07 日 15:44
+-- 生成日期: 2014 年 08 月 18 日 04:54
 -- 服务器版本: 5.1.33
 -- PHP 版本: 5.2.9-2
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- 数据库: `vagetable`
@@ -25,12 +31,16 @@ CREATE TABLE IF NOT EXISTS `category` (
   `categoryid` tinyint(4) NOT NULL,
   `superid` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4 ;
 
 --
 -- 导出表中的数据 `category`
 --
 
+INSERT INTO `category` (`id`, `name`, `categoryid`, `superid`) VALUES
+(1, '蔬菜', 1, 0),
+(2, '水果', 2, 0),
+(3, '生鲜', 3, 0);
 
 -- --------------------------------------------------------
 
@@ -94,19 +104,29 @@ CREATE TABLE IF NOT EXISTS `product` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) COLLATE utf8_bin NOT NULL,
   `desc` varchar(80) COLLATE utf8_bin NOT NULL,
-  `price` double NOT NULL,
-  `memprice` double NOT NULL,
-  `categoryid` tinyint(4) NOT NULL,
+  `oprice` double NOT NULL,
+  `sprice` double NOT NULL,
+  `mprice` double DEFAULT NULL,
+  `category` tinyint(4) NOT NULL,
   `pdate` datetime NOT NULL,
+  `udate` datetime NOT NULL,
   `picpath` varchar(50) COLLATE utf8_bin NOT NULL,
   `unit` varchar(4) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=21 ;
 
 --
 -- 导出表中的数据 `product`
 --
 
+INSERT INTO `product` (`id`, `name`, `desc`, `oprice`, `sprice`, `mprice`, `category`, `pdate`, `udate`, `picpath`, `unit`) VALUES
+(6, 'dfd34', '', 123, 1234, 123, 1, '2014-08-18 02:43:09', '2014-08-18 04:52:50', '', ''),
+(12, '大区d76', '', 123, 123, 123, 1, '2014-08-18 03:02:34', '2014-08-18 03:23:25', '', ''),
+(14, '大区d', '', 123, 123, 123, 1, '2014-08-18 03:25:58', '2014-08-18 03:25:58', '', ''),
+(16, '大区djkdf', '', 123, 123, 123, 1, '2014-08-18 03:27:04', '2014-08-18 03:27:04', '', ''),
+(17, 'sgzs', '', 12, 123, 12, 1, '2014-08-18 04:05:13', '2014-08-18 04:05:13', '', ''),
+(19, 'sgzs23dd', '', 12, 123, 12, 1, '2014-08-18 04:06:32', '2014-08-18 04:19:16', '', '');
 
 -- --------------------------------------------------------
 
