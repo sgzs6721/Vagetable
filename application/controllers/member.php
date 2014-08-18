@@ -55,7 +55,7 @@ class Member extends MY_Controller{
 		}
 	}
 
-	public function ajaxValidateFieldUser()
+	public function ajaxValidateFieldMember()
 	{
 		$this->load->model('members');
 

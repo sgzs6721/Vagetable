@@ -23,7 +23,7 @@ class Product extends MY_Controller{
 				{
 					echo validation_errors();
 					$product_info['categorylist'] = $this->products->get_category();
-						$this->cismarty->view('pages/product_add.tpl', $product_info);
+					$this->cismarty->view('pages/product_add.tpl', $product_info);
 				}
 				else
 				{					
@@ -45,12 +45,22 @@ class Product extends MY_Controller{
 		}
 	}
 
+	public function ajaxValidateFieldProduct()
+	{
+		$this->load->model('products');
+
+		$data_array = array($_GET['fieldId'], $this->products->check_product_exist($_GET['fieldValue']));
+		echo Json_encode($data_array);
+	}
+
 	public function show_update($product)
 	{
+		$product = urldecode($product);
 		if( $this->check_login() )
 		{
 			$this->load->model('products');
 			$product_info = $this->products->get_product_info($product);
+			$product_info['categorylist'] = $this->products->get_category();
 			$this->cismarty->view('pages/product_update.tpl',$product_info);
 		}
 		else
@@ -59,12 +69,19 @@ class Product extends MY_Controller{
 		}
 	}
 
-	public function update_info($product)
+	public function update_info($product_id)
 	{
 		if( $this->check_login() )
 		{
 			$this->load->model('products');
-			$this->products->update_product_info($product,$this->input->post());
+			$this->load->model('members');
+			$post_data = $this->input->post();
+			$this->products->update_product_info($product_id,$post_data);
+
+			$post_data['is_admin'] = 0;
+			if($this->members->is_admin($this->session->userdata['memberName'])) $post_data['is_admin'] = 1;
+			
+			$this->cismarty->view('pages/product_inspect.tpl', $post_data);
 		}
 		else
 		{
@@ -75,6 +92,7 @@ class Product extends MY_Controller{
 
 	public function inspect_product($product)
 	{
+		$product = urldecode($product);
 		if($this->check_login())
 		{
 			$this->load->model('members');

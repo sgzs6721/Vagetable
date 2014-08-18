@@ -34,47 +34,58 @@ class Products extends CI_Model {
 		return $current_time;
 	}
 
-	function update_product_info($member_name, $member_info)
+	function check_product_exist($product)
+	{
+		$query_data = $this->db->where('name', $product)->limit(1)->get('product');
+
+		if($query_data->num_rows > 0) return FALSE;
+
+		return TRUE;
+	}
+
+	function update_product_info($product_id, $product_info)
 	{
 		$current_time = date("Y-m-d H:i:s",time());
 		$update_data  = array(
-								'username'    => $member_info['username'],
-								'realname'    => $member_info['realname'],
-								'email'       => $member_info['email'],
-								'phone'       => $member_info['phone'],
-								'udate'       => $current_time,
+								'name'       => $product_info['name'],
+								'oprice'     => $product_info['oprice'],
+								'sprice'     => $product_info['sprice'],
+								'mprice'     => $product_info['mprice'],
+								'category'   => $product_info['category'],
+								'udate'      => $current_time,
+								'picpath'    => $product_info['picpath'],
 							 );
 
-		$this->db->where('username', $member_name);
-		$this->db->update('member',$update_data);
+		$this->db->where('id', $product_id);
+		$this->db->update('product',$update_data);
 	}
 
-	function get_member_info($member)
+	function get_product_info($product)
 	{
-		$member_data = $this->db->select('username,realname,email,phone,permission')
-								->where('username',$member)->get('member')->first_row('array');
-		return $member_data;
+		$product_data = $this->db->select('id,name,oprice,sprice,mprice,category,desc,unit,picpath')
+								 ->where('name',$product)->get('product')->first_row('array');
+		return $product_data;
 	}
 
-	function get_all_members($offset, $number)
+	function get_all_products($offset, $number)
 	{
-		$member_data = $this->db->select('id,username,realname,email,phone,permission,mdate,udate')
+		$product_data = $this->db->select('id,name,desc,oprice,sprice,mprice,category,pdate,udate,picpath')
                             ->limit($number, $offset)
                             ->order_by('id')
-                            ->get('member')
+                            ->get('product')
                             ->result_array();
 
-        return $member_data;
+        return $product_data;
 	}
 
-	function get_member_number()
+	function get_product_number()
 	{
-		$member_number = $this->db->get('member')->num_rows();
-		return $member_number;
+		$product_number = $this->db->get('product')->num_rows();
+		return $product_number;
 	}
 
-	function delete_member($member)
+	function delete_product($product)
 	{
-		$this->db->delete('member', array('username' => $member));
+		$this->db->delete('product', array('name' => $product));
 	}
 }

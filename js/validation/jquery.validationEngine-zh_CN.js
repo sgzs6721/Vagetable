@@ -119,13 +119,21 @@
                     "alertText": "* 不接受特殊字符"
                 },
                 // --- CUSTOM RULES -- Those are specific to the demos, they can be removed or changed to your likings
-                "ajaxUserCall": {
-                    "url": "ajaxValidateFieldUser",
+                "ajaxMemberCall": {
+                    "url": "ajaxValidateFieldMember",
                     // you may want to pass extra data on the ajax call
                     "extraData": "name=eric",
                     "alertText": "* 此名称已被其他人使用",
                     "alertTextOk": "* 此名称可以使用",
                     "alertTextLoad": "* 正在确认名称是否有其他人使用，请稍等。"
+                },
+                "ajaxProductCall": {
+                    "url": "ajaxValidateFieldProduct",
+                    // you may want to pass extra data on the ajax call
+                    "extraData": "name=eric",
+                    "alertText": "* 此名称已被其他人使用",
+                    "alertTextOk": "* 此名称可以使用",
+                    "alertTextLoad": "* 正在确认名称，请稍等。"
                 },
 				"ajaxUserCallPhp": {
                     "url": "ajaxValidateFieldUser.php",
