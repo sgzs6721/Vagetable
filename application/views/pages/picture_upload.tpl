@@ -20,7 +20,7 @@
 <noscript><link rel="stylesheet" href="<%$baseUrl%>/css/upload/jquery.fileupload-ui-noscript.css"></noscript>
 </head>
 <body>
-<%$category%>
+
 <div class="container">
     <h1>Vagetable Picture Upload</h1>
 

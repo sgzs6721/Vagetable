@@ -1,16 +1,19 @@
 <link rel="stylesheet" href="<%$baseUrl%>/css/validation/validationEngine.jquery.css">
 <script src="<%$baseUrl%>/js/jquery.1.7.0.js"></script>
+<script src="<%$baseUrl%>/js/ajax3.0.js"></script>
 <script src="<%$baseUrl%>/js/validation/jquery.validationEngine-zh_CN.js"></script>
 <script src="<%$baseUrl%>/js/validation/jquery.validationEngine.js"></script>
 <script src="<%$baseUrl%>/js/imagepicker/image-picker.js"></script>
 <script src="<%$baseUrl%>/js/imagepicker/image-picker.min.js"></script>
 <link rel="stylesheet" href="<%$baseUrl%>/css/image-picker.css">
-<script>
+
+<script type="text/javascript">
+var ajax = new Ajax();
 
 jQuery(document).ready( function() {
   // binds form submission and fields to the validation engine
   jQuery("#addproduct").validationEngine();
-  $("#addproduct").validationEngine("attach",{ 
+  $("#addproduct").validationEngine("attach",{
       showOneMessage:true
   });
 });
@@ -37,7 +40,7 @@ jQuery(document).ready( function() {
             <%foreach from=$categorylist item=row %>
               <%foreach from=$row key=keys item=value %>
                 <%if $keys eq name%>
-                  <option value="<%$row.categoryid%>"><%$value%></option>
+                  <option value="<%$row.enname%>"><%$value%></option>
                 <%/if%>
               <%/foreach%>
             <%/foreach%>
@@ -89,12 +92,14 @@ jQuery(document).ready( function() {
       <div class="pf-l">
         <label class="pf-label">商品图片</label>
       </div>
-      <select multiple="multiple" class="image-picker show-html" name='picpath[]'>
-        <option data-img-src="<%$baseUrl%>/images/thumbnail/1.jpg" value="<%$baseUrl%>/images/thumbnail/1.jpg">image1</option>
-        <option data-img-src="<%$baseUrl%>/images/thumbnail/2.jpg" value="<%$baseUrl%>/images/thumbnail/2.jpg">image2</option>
-        <option data-img-src="<%$baseUrl%>/images/thumbnail/3.jpg" value="<%$baseUrl%>/images/thumbnail/3.jpg">image3</option>
-        <option data-img-src="<%$baseUrl%>/images/thumbnail/4.jpg" value="<%$baseUrl%>/images/thumbnail/4.jpg">image4</option>
-      </select>
+      <div class="show_images">
+        <select multiple="multiple" class="image-picker show-html" name='picpath[]'>
+          <option data-img-src="<%$baseUrl%>/images/thumbnail/1.jpg" value="<%$baseUrl%>/images/thumbnail/1.jpg">image1</option>
+          <option data-img-src="<%$baseUrl%>/images/thumbnail/2.jpg" value="<%$baseUrl%>/images/thumbnail/2.jpg">image2</option>
+          <option data-img-src="<%$baseUrl%>/images/thumbnail/3.jpg" value="<%$baseUrl%>/images/thumbnail/3.jpg">image3</option>
+          <option data-img-src="<%$baseUrl%>/images/thumbnail/4.jpg" value="<%$baseUrl%>/images/thumbnail/4.jpg">image4</option>
+        </select>
+      </div>
     </div>
     
     <div class="pf-button">
@@ -108,4 +113,21 @@ jQuery(document).ready( function() {
       hide_select:  true,
     });
 
+    var category = $('#category').val();
+
+    $('#category').change(function(){
+
+      var url = '<%$baseUrl%>/image/get_images/' + category;
+      ajax.get(url,function(data){
+
+        $('.show_images').html(data);
+
+      });
+
+    });
 </script>
+
+
+
+
+

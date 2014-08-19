@@ -41,4 +41,37 @@ class Image extends MY_Controller{
 		}
 	}
 
+	public function get_images($category = 'other', $page = 1)
+	{
+		$dir = 'images/'.$category;
+		$handle = opendir($dir);
+		
+		$image_file = array();
+		$image_number = 0;
+	    while (false !== ($file = readdir($handle)))
+	    {
+	    	
+	    	if($file != '.' && $file != '..' && !is_dir($dir.'/'.$file))
+	    	{
+	    		echo $file;
+		    	list($files_name,$file_type) = explode(".", $file);
+		        if($file_type=="gif" or $file_type=="jpg" or $file_type=="JPG" or $file_type=="png" or $file_type=="PNG")
+		        {
+		            array_push($image_file, $file);
+		            $image_number++;
+		        }
+		    }
+	    }
+
+		$this->cismarty->view('pages/product_images.tpl',
+							   array('category' => $category, 
+							   		 'images'   => $image_file[$page - 1 ],
+							  ));
+	}
+
 }
+
+
+
+
+
