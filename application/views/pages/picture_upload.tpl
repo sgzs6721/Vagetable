@@ -20,7 +20,7 @@
 <noscript><link rel="stylesheet" href="<%$baseUrl%>/css/upload/jquery.fileupload-ui-noscript.css"></noscript>
 </head>
 <body>
-
+<%$category%>
 <div class="container">
     <h1>Vagetable Picture Upload</h1>
 
@@ -182,7 +182,7 @@
 
 <script src="<%$baseUrl%>/js/upload/jquery.fileupload-ui.js"></script>
 
-<script src="<%$baseUrl%>/js/upload/main.js"></script>
+<script id="testScript" src="<%$baseUrl%>/js/upload/main.js" data="<%$category%>"></script>
 
 </body> 
 </html>

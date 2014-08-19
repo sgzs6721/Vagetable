@@ -8,7 +8,7 @@ class Products extends CI_Model {
 
 	function get_category()
 	{
-		$categorys = $this->db->select('name,categoryid,superid')
+		$categorys = $this->db->select('name,enname,categoryid,superid')
 						->order_by('id')
 						->get('category')
 						->result_array();
