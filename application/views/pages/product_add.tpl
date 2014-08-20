@@ -37,6 +37,7 @@ jQuery(document).ready( function() {
       </div>
       <div class="pf-r">
           <select name="category" id="category" class="pf-select">
+            <option value="">----选择商品类别----</option>
             <%foreach from=$categorylist item=row %>
               <%foreach from=$row key=keys item=value %>
                 <%if $keys eq name%>
@@ -93,12 +94,14 @@ jQuery(document).ready( function() {
         <label class="pf-label">商品图片</label>
       </div>
       <div class="show_images">
+        <!--
         <select multiple="multiple" class="image-picker show-html" name='picpath[]'>
           <option data-img-src="<%$baseUrl%>/images/thumbnail/1.jpg" value="<%$baseUrl%>/images/thumbnail/1.jpg">image1</option>
           <option data-img-src="<%$baseUrl%>/images/thumbnail/2.jpg" value="<%$baseUrl%>/images/thumbnail/2.jpg">image2</option>
           <option data-img-src="<%$baseUrl%>/images/thumbnail/3.jpg" value="<%$baseUrl%>/images/thumbnail/3.jpg">image3</option>
           <option data-img-src="<%$baseUrl%>/images/thumbnail/4.jpg" value="<%$baseUrl%>/images/thumbnail/4.jpg">image4</option>
         </select>
+      -->
       </div>
     </div>
     
@@ -111,12 +114,10 @@ jQuery(document).ready( function() {
 
     jQuery("select.image-picker").imagepicker({
       hide_select:  true,
-    });
-
-    var category = $('#category').val();
+    });    
 
     $('#category').change(function(){
-
+      var category = $('#category').val();
       var url = '<%$baseUrl%>/image/get_images/' + category;
       ajax.get(url,function(data){
 
