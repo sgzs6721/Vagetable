@@ -2,7 +2,9 @@
 <script src="<%$baseUrl%>/js/jquery.1.7.0.js"></script>
 <script src="<%$baseUrl%>/js/validation/jquery.validationEngine-zh_CN.js"></script>
 <script src="<%$baseUrl%>/js/validation/jquery.validationEngine.js"></script>
-
+<script src="<%$baseUrl%>/js/imagepicker/image-picker.js"></script>
+<script src="<%$baseUrl%>/js/imagepicker/image-picker.min.js"></script>
+<link rel="stylesheet" href="<%$baseUrl%>/css/image-picker.css">
 <script>
 
 jQuery(document).ready( function() {
@@ -35,7 +37,7 @@ jQuery(document).ready( function() {
             <%foreach from=$categorylist item=row %>
               <%foreach from=$row key=keys item=value %>
                 <%if $keys eq name%>
-                  <option value="<%$row.categoryid%>"><%$value%></option>
+                  <option value="<%$row.enname%>"><%$value%></option>
                 <%/if%>
               <%/foreach%>
             <%/foreach%>
@@ -87,9 +89,12 @@ jQuery(document).ready( function() {
       <div class="pf-l">
         <label class="pf-label">商品图片</label>
       </div>
-      <div class="pf-r">
-        <input name="picpath" data-prompt-position="inline" data-prompt-target="picpathmessage" class="pf-text" type="text"  value=""/>
-        <span class="pf-help">请输入商品描述信息</span><div id="picpathmessage"></div>
+      <div class="show_images">
+        <select multiple="multiple" class="image-picker show-html" name='picpath[]'>
+        <%foreach from=';'|explode:$picpath item=item%>
+        <option data-img-src="<%$item%>" value="<%$item%>"></option>
+        <%/foreach%>
+      </select>
       </div>
     </div>
     
@@ -97,3 +102,21 @@ jQuery(document).ready( function() {
       <input type="submit" class="btn btn-submit" value="确 认" />
     </div>
 </form>
+
+<script type="text/javascript">
+
+    jQuery("select.image-picker").imagepicker({
+      hide_select:  true,
+    });
+
+    $('#category').change(function(){
+      var category = $('#category').val();
+      var url = '<%$baseUrl%>/image/get_images/' + category;
+      ajax.get(url,function(data){
+
+        $('.show_images').html(data);
+
+      });
+
+    });
+</script>

@@ -60,6 +60,7 @@ class Product extends MY_Controller{
 			$this->load->model('products');
 			$product_info = $this->products->get_product_info($product);
 			$product_info['categorylist'] = $this->products->get_category();
+			var_dump($product_info);
 			$this->cismarty->view('pages/product_update.tpl',$product_info);
 		}
 		else
