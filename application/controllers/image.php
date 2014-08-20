@@ -44,52 +44,61 @@ class Image extends MY_Controller{
 	public function get_images($category = 'other', $page = 1)
 	{
 		$dir = 'images/'.$category;
-		$handle = opendir($dir);
-		
-		$image_file = array();
-		$image_number = 0;
-	    while (false !== ($file = readdir($handle)))
-	    {
-	    	
-	    	if($file != '.' && $file != '..' && !is_dir($dir.'/'.$file))
-	    	{
-		    	list($files_name,$file_type) = explode(".", $file);
-		        if($file_type=="gif" or $file_type=="jpg" or $file_type=="JPG" or $file_type=="png" or $file_type=="PNG")
-		        {
-		            array_push($image_file, $file);
-		            $image_number++;
-		        }
-		    }
-	    }
 
-	    $this->load->library('pagination');
-
-		$config['base_url']             = site_url('image/get_images/'.$category);
-		$config['total_rows']           = $image_number;
-		$config['per_page']             = 2;
-		$config['first_link']           = '第一页';
-		$config['last_link']            = '最后一页';
-		$config['uri_segment']          = 4;
-		$config['use_page_numbers']     = TRUE;
-
-		$index = ($page - 1) * 2;
-
-		$images = array();
-		for ($i = $index; $i < $index + $config['per_page']; $i++)
+		if(is_dir($dir))
 		{
-			if(isset($image_file[$i]))
-				array_push($images, $image_file[$i]);
-			else
-				break;
+
+			$handle = opendir($dir);
+			
+			$image_file = array();
+			$image_number = 0;
+		    while (false !== ($file = readdir($handle)))
+		    {
+		    	
+		    	if($file != '.' && $file != '..' && !is_dir($dir.'/'.$file))
+		    	{
+			    	list($files_name,$file_type) = explode(".", $file);
+			        if($file_type=="gif" or $file_type=="jpg" or $file_type=="JPG" or $file_type=="png" or $file_type=="PNG")
+			        {
+			            array_push($image_file, $file);
+			            $image_number++;
+			        }
+			    }
+		    }
+
+		    $this->load->library('pagination');
+
+			$config['base_url']             = site_url('image/get_images/'.$category);
+			$config['total_rows']           = $image_number;
+			$config['per_page']             = 2;
+			$config['first_link']           = '第一页';
+			$config['last_link']            = '最后一页';
+			$config['uri_segment']          = 4;
+			$config['use_page_numbers']     = TRUE;
+
+			$index = ($page - 1) * 2;
+
+			$images = array();
+			for ($i = $index; $i < $index + $config['per_page']; $i++)
+			{
+				if(isset($image_file[$i]))
+					array_push($images, $image_file[$i]);
+				else
+					break;
+			}
+
+			$this->pagination->initialize($config);		
+
+			$this->cismarty->view('pages/product_images.tpl',
+								   array('category' => $category, 
+								   		 'images'   => $images,
+								   		 'link'     => $this->pagination->create_links(),
+								  ));
 		}
-
-		$this->pagination->initialize($config);		
-
-		$this->cismarty->view('pages/product_images.tpl',
-							   array('category' => $category, 
-							   		 'images'   => $images,
-							   		 'link'     => $this->pagination->create_links(),
-							  ));
+		else
+		{
+			$this->cismarty->view('pages/no_picture.tpl');
+		}
 	}
 
 }
