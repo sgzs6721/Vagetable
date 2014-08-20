@@ -114,7 +114,7 @@ jQuery(document).ready( function() {
 
     jQuery("select.image-picker").imagepicker({
       hide_select:  true,
-    });    
+    });
 
     $('#category').change(function(){
       var category = $('#category').val();

@@ -60,7 +60,19 @@ class Product extends MY_Controller{
 			$this->load->model('products');
 			$product_info = $this->products->get_product_info($product);
 			$product_info['categorylist'] = $this->products->get_category();
-			var_dump($product_info);
+
+			$dir = 'images/'. $product_info['category'];
+			$image_file = array();
+
+			if(is_dir($dir))
+			{
+				$this->load->model('images');
+				$images_info = $this->images->get_dir_images($dir);
+				$image_file = $images_info['image_file'];
+			}
+
+			$product_info['image_file'] = $image_file;
+			// var_dump($product_info);
 			$this->cismarty->view('pages/product_update.tpl',$product_info);
 		}
 		else

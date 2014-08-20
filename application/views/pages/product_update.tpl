@@ -37,7 +37,11 @@ jQuery(document).ready( function() {
             <%foreach from=$categorylist item=row %>
               <%foreach from=$row key=keys item=value %>
                 <%if $keys eq name%>
-                  <option value="<%$row.enname%>"><%$value%></option>
+                  <%if $row.enname eq $category%>
+                    <option value="<%$row.enname%>" selected><%$value%></option>
+                  <%else%>
+                    <option value="<%$row.enname%>"><%$value%></option>
+                  <%/if%>
                 <%/if%>
               <%/foreach%>
             <%/foreach%>
@@ -91,8 +95,12 @@ jQuery(document).ready( function() {
       </div>
       <div class="show_images">
         <select multiple="multiple" class="image-picker show-html" name='picpath[]'>
-        <%foreach from=';'|explode:$picpath item=item%>
-        <option data-img-src="<%$item%>" value="<%$item%>"></option>
+        <%foreach from=$image_file item=value%>
+          <%if $value eq 1%>
+            <option data-img-src="<%$baseUrl%>/images/<%$category%>/thumbnail/<%$value%>" value="<%$baseUrl%>/images/<%$category%>/thumbnail/<%$value%>" selected></option>
+          <%else%>
+            <option data-img-src="<%$baseUrl%>/images/<%$category%>/thumbnail/<%$value%>" value="<%$baseUrl%>/images/<%$category%>/thumbnail/<%$value%>"></option>
+          <%/if%>
         <%/foreach%>
       </select>
       </div>
