@@ -96,10 +96,10 @@ jQuery(document).ready( function() {
       <div class="show_images">
         <select multiple="multiple" class="image-picker show-html" name='picpath[]'>
         <%foreach from=$image_file item=value%>
-          <%if $value eq 1%>
-            <option data-img-src="<%$baseUrl%>/images/<%$category%>/thumbnail/<%$value%>" value="<%$baseUrl%>/images/<%$category%>/thumbnail/<%$value%>" selected></option>
+          <%if $value|in_array:(';'|explode:$picpath)%>
+            <option data-img-src="<%$baseUrl%>/images/<%$category%>/thumbnail/<%$value%>" value="<%$value%>" selected></option>
           <%else%>
-            <option data-img-src="<%$baseUrl%>/images/<%$category%>/thumbnail/<%$value%>" value="<%$baseUrl%>/images/<%$category%>/thumbnail/<%$value%>"></option>
+            <option data-img-src="<%$baseUrl%>/images/<%$category%>/thumbnail/<%$value%>" value="<%$value%>"></option>
           <%/if%>
         <%/foreach%>
       </select>

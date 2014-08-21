@@ -27,7 +27,8 @@ class Product extends MY_Controller{
 				}
 				else
 				{
-					$product_info = $this->input->post();			
+					$product_info = $this->input->post();
+					$product_info['picpath'] = join($product_info['picpath'],';');
 					$this->products->add_product($product_info);
 					$product_info['is_admin'] = 1;
 					$this->cismarty->view('pages/product_inspect.tpl',$product_info);
@@ -72,7 +73,6 @@ class Product extends MY_Controller{
 			}
 
 			$product_info['image_file'] = $image_file;
-			// var_dump($product_info);
 			$this->cismarty->view('pages/product_update.tpl',$product_info);
 		}
 		else
@@ -92,7 +92,8 @@ class Product extends MY_Controller{
 
 			$post_data['is_admin'] = 0;
 			if($this->members->is_admin($this->session->userdata['memberName'])) $post_data['is_admin'] = 1;
-			
+			$picture_path = join($post_data['picpath'],';');
+			$post_data['picpath'] = $picture_path;
 			$this->cismarty->view('pages/product_inspect.tpl', $post_data);
 		}
 		else
