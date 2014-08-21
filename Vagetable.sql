@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2014 年 08 月 19 日 08:31
+-- 生成日期: 2014 年 08 月 21 日 02:42
 -- 服务器版本: 5.1.33
 -- PHP 版本: 5.2.9-2
 
@@ -109,36 +109,27 @@ CREATE TABLE IF NOT EXISTS `product` (
   `oprice` double NOT NULL,
   `sprice` double NOT NULL,
   `mprice` double DEFAULT NULL,
-  `category` tinyint(4) NOT NULL,
+  `category` varchar(16) COLLATE utf8_bin NOT NULL,
   `pdate` datetime NOT NULL,
   `udate` datetime NOT NULL,
-  `picpath` varchar(200) COLLATE utf8_bin NOT NULL,
-  `unit` varchar(4) COLLATE utf8_bin NOT NULL,
+  `picpath` varchar(200) COLLATE utf8_bin DEFAULT NULL,
+  `unit` varchar(4) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=52 ;
 
 --
 -- 导出表中的数据 `product`
 --
 
 INSERT INTO `product` (`id`, `name`, `desc`, `oprice`, `sprice`, `mprice`, `category`, `pdate`, `udate`, `picpath`, `unit`) VALUES
-(6, 'dfd34', '', 123, 1234, 123, 1, '2014-08-18 02:43:09', '2014-08-18 04:52:50', '', ''),
-(12, '大区d76', '', 123, 123, 123, 1, '2014-08-18 03:02:34', '2014-08-18 03:23:25', '', ''),
-(14, '大区d', '', 123, 123, 123, 1, '2014-08-18 03:25:58', '2014-08-18 03:25:58', '', ''),
-(16, '大区djkdf', '', 123, 123, 123, 1, '2014-08-18 03:27:04', '2014-08-18 03:27:04', '', ''),
-(17, 'sgzs', '', 12, 123, 12, 1, '2014-08-18 04:05:13', '2014-08-18 04:05:13', '', ''),
-(19, 'sgzs23dd', '', 12, 123, 12, 1, '2014-08-18 04:06:32', '2014-08-18 04:19:16', '', ''),
-(21, 'sdf', '12', 12, 12, 12, 1, '2014-08-18 07:55:22', '2014-08-18 07:55:22', '', ''),
-(22, 'sdfd', '12', 12, 12, 12, 1, '2014-08-18 07:56:31', '2014-08-18 07:56:31', '', ''),
-(23, 'sdfdd', '12', 12, 12, 12, 1, '2014-08-18 07:57:35', '2014-08-18 07:57:35', '', ''),
-(24, 'sdfdd1', '12', 12, 12, 12, 1, '2014-08-18 08:04:06', '2014-08-18 08:04:06', '', ''),
-(25, 'dfdfadfad', '123', 123, 123, 123, 1, '2014-08-18 08:04:37', '2014-08-18 08:04:37', '', ''),
-(26, '大起大落', '123', 123, 123, 123, 1, '2014-08-18 08:32:17', '2014-08-18 08:32:17', '', ''),
-(27, '大起大落d', '123', 123, 123, 123, 1, '2014-08-18 08:36:16', '2014-08-18 08:36:16', '/Vagetable/images/thumbnail/1.jpg;/Vagetable/images/thumbnail/2.jpg;/Vagetable/images/thumbnail/3.jpg', ''),
-(28, '大起大落dd', '123', 123, 123, 123, 1, '2014-08-18 08:46:43', '2014-08-18 08:46:43', '/Vagetable/images/thumbnail/1.jpg;/Vagetable/images/thumbnail/2.jpg', ''),
-(30, '大起大落dd3', '123', 123, 123, 123, 1, '2014-08-18 08:47:06', '2014-08-18 08:47:06', '/Vagetable/images/thumbnail/1.jpg;/Vagetable/images/thumbnail/2.jpg;/Vagetable/images/thumbnail/3.jpg', ''),
-(32, '大起大落dd32', '123', 123, 123, 123, 1, '2014-08-18 08:47:34', '2014-08-18 08:47:34', '/Vagetable/images/thumbnail/1.jpg;/Vagetable/images/thumbnail/2.jpg;/Vagetable/images/thumbnail/3.jpg', '');
+(44, '3dfeac2', '2344fd', 243, 435, 435, 'vegetable', '2014-08-21 01:55:16', '2014-08-21 01:55:16', 'Database.jpg', NULL),
+(45, 'deade2', '', 3, 3, 4, 'fruit', '2014-08-21 02:24:01', '2014-08-21 02:24:01', '2.jpg;3.jpg', NULL),
+(46, '3541dfad', '546356', 4, 45, 56, 'other', '2014-08-21 02:27:21', '2014-08-21 02:27:21', NULL, NULL),
+(48, 'da1q435df', '3413', 324, 3143, 3413, 'fruit', '2014-08-21 02:29:40', '2014-08-21 02:29:40', NULL, NULL),
+(49, '2342', '1343', 2314, 3132, 3123, 'fruit', '2014-08-21 02:31:33', '2014-08-21 02:32:05', '2.jpg', NULL),
+(50, 'dadwq', '23fgsfdg', 3, 5, 9, 'fruit', '2014-08-21 02:37:56', '2014-08-21 02:37:56', NULL, NULL),
+(51, '234134', '42', 134, 545, 42, 'vegetable', '2014-08-21 02:38:35', '2014-08-21 02:38:35', 'Database.jpg', NULL);
 
 -- --------------------------------------------------------
 
