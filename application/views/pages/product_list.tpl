@@ -13,10 +13,10 @@ var ajax = new Ajax();
 				<%foreach from=$row key=keys item=value %>
 					<%if $keys eq 'name'%>
 						<td><a href="<%$baseUrl%>/product/inspect_product/<%$value%>"><%$value%></a></td>
-					<%elseif $keys eq 'picpath'%>
+					<%elseif $keys eq 'picpath' && $value != null%>
 						<td>
 						<%foreach from=';'|explode:$value item=item%>
-							<img src="<%$item%>"></img>
+							<img src="<%$baseUrl%>/images/<%$row.category%>/thumbnail/<%$item%>"></img>
 						<%/foreach%>
 					</td>
 					<%else%>

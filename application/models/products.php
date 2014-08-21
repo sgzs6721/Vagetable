@@ -18,8 +18,6 @@ class Products extends CI_Model {
 	function add_product($product_data)
 	{
 		$current_time = date("Y-m-d H:i:s",time());
-		$picture_path = join($product_data['picpath'],';');
-		
 		$data = array(
 						'name'        => $product_data['name'],
 						'oprice'      => $product_data['oprice'],
@@ -29,7 +27,7 @@ class Products extends CI_Model {
 						'category'    => $product_data['category'],
 						'pdate'		  => $current_time,
 						'udate'       => $current_time,
-						'picpath'     => $picture_path,
+						'picpath'     => $product_data['picpath'],
 					);
 
 		$resl = $this->db->insert('product',$data);
@@ -48,6 +46,8 @@ class Products extends CI_Model {
 	function update_product_info($product_id, $product_info)
 	{
 		$current_time = date("Y-m-d H:i:s",time());
+		$picture_path = join($product_info['picpath'],';');
+
 		$update_data  = array(
 								'name'       => $product_info['name'],
 								'oprice'     => $product_info['oprice'],
@@ -55,7 +55,7 @@ class Products extends CI_Model {
 								'mprice'     => $product_info['mprice'],
 								'category'   => $product_info['category'],
 								'udate'      => $current_time,
-								'picpath'    => $product_info['picpath'],
+								'picpath'    => $picture_path,
 							 );
 
 		$this->db->where('id', $product_id);

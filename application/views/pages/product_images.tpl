@@ -12,7 +12,7 @@ var ajax = new Ajax();
 	<select multiple="multiple" class="image-picker show-html" name='picpath[]'>
 
 		<%foreach from=$images item=value%>
-			<option data-img-src="<%$baseUrl%>/images/<%$category%>/thumbnail/<%$value%>" value="<%$baseUrl%>/images/<%$category%>/thumbnail/<%$value%>"><%$value%></option>
+			<option data-img-src="<%$baseUrl%>/images/<%$category%>/thumbnail/<%$value%>" value="<%$value%>"><%$value%></option>
 		<%/foreach%>
 		
 	</select>

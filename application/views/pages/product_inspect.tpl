@@ -3,8 +3,8 @@
 会员价格:<%$mprice%><br>
 商品类别:<%$category%><br>
 商品图片:<br>
-<%foreach from=$picpath item=item %>
-	<img src="<%$item%>"></img>
+<%foreach from=';'|explode:$picpath item=item %>
+	<img src="<%$baseUrl%>/images/<%$category%>/<%$item%>"></img>
 <%/foreach%>
 <br>
 <a href='<%$baseUrl%>/product/show_update/<%$name%>'>修改</a>
