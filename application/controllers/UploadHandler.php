@@ -45,6 +45,7 @@ class UploadHandler
             'script_url' => $this->get_full_url().'/',
             'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/images/'.$path.'/',
             'upload_url' => $this->get_full_url().'/images/'.$path.'/',
+            'category'  => $path,
             'user_dirs' => false,
             'mkdir_mode' => 0755,
             'param_name' => 'files',
@@ -247,7 +248,7 @@ class UploadHandler
     }
 
     protected function set_additional_file_properties($file) {
-        $file->deleteUrl = $this->options['script_url'].'image/upload'
+        $file->deleteUrl = $this->options['script_url'].'image/upload/'.$this->options['category']
             .$this->get_query_separator($this->options['script_url'])
             .$this->get_singular_param_name()
             .'='.rawurlencode($file->name);
