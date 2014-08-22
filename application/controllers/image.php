@@ -63,7 +63,7 @@ class Image extends MY_Controller{
 			$config['uri_segment']          = 4;
 			$config['use_page_numbers']     = TRUE;
 
-			$index = ($page - 1) * 2;
+			$index = ($page - 1) * $config['per_page'];
 
 			$images = array();
 			for ($i = $index; $i < $index + $config['per_page']; $i++)
