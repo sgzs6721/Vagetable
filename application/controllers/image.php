@@ -57,7 +57,7 @@ class Image extends MY_Controller{
 
 			$config['base_url']             = site_url('image/get_images/'.$category);
 			$config['total_rows']           = $image_number;
-			$config['per_page']             = 6;
+			$config['per_page']             = 15;
 			$config['first_link']           = '第一页';
 			$config['last_link']            = '最后一页';
 			$config['uri_segment']          = 4;

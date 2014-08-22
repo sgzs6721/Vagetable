@@ -59,6 +59,7 @@ $(document).ready(function(){
 	<div class="pagination"><%$link%></div>
 
 </div>
+<a href='<%$baseUrl%>/product/add'>添加</a>
 
 <script type="text/javascript">
 	$(".pagination a").live('click',function(){
@@ -74,7 +75,7 @@ $(document).ready(function(){
 	});
 
 	$('#ajaxinfo tr.product-info').css("cursor","pointer").click(function(){
-		$(this).siblings('.picinfo-' + this.id).fadeToggle("fast");
+		$(this).siblings('.picinfo-' + this.id).toggle("fast");
 	});
 
 </script>
