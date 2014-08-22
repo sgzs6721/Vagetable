@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2014 年 08 月 22 日 05:31
+-- 生成日期: 2014 年 08 月 22 日 06:30
 -- 服务器版本: 5.1.33
 -- PHP 版本: 5.2.9-2
 
@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `unit` varchar(4) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=56 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=57 ;
 
 --
 -- 导出表中的数据 `product`
@@ -126,7 +126,8 @@ INSERT INTO `product` (`id`, `name`, `desc`, `oprice`, `sprice`, `mprice`, `cate
 (52, '西红柿', '西红柿', 1, 1, 1, 'vegetable', '2014-08-22 05:06:56', '2014-08-22 05:08:26', 'vegetable_014.png;vegetable_015.png;vegetable_016.png;vegetable_054.jpg', NULL),
 (53, '土豆', '土豆', 1, 1, 1, 'vegetable', '2014-08-22 05:07:42', '2014-08-22 05:08:47', 'vegetable_004.png;vegetable_005.png;vegetable_006.png;vegetable_007.png', NULL),
 (54, '蒜', '蒜', 1, 1, 1, 'vegetable', '2014-08-22 05:10:47', '2014-08-22 05:10:47', 'vegetable_011.png;vegetable_012.png;vegetable_013.png', NULL),
-(55, '白菜', '白菜', 1, 1, 1, 'vegetable', '2014-08-22 05:15:11', '2014-08-22 05:15:11', 'vegetable_000.jpg;vegetable_001.jpg;vegetable_002.png;vegetable_003.jpg', NULL);
+(55, '白菜', '白菜', 1, 1, 1, 'vegetable', '2014-08-22 05:15:11', '2014-08-22 05:15:11', 'vegetable_000.jpg;vegetable_001.jpg;vegetable_002.png;vegetable_003.jpg', NULL),
+(56, '姜', '姜', 1, 1, 1, 'vegetable', '2014-08-22 06:28:35', '2014-08-22 06:28:35', 'vegetable_008.png;vegetable_009.png;vegetable_010.png', NULL);
 
 -- --------------------------------------------------------
 

@@ -57,9 +57,9 @@ $(document).ready(function(){
 		<%/foreach%>
 	</table>
 	<div class="pagination"><%$link%></div>
-
+	<a href='<%$baseUrl%>/product/add'>添加</a>
 </div>
-<a href='<%$baseUrl%>/product/add'>添加</a>
+
 
 <script type="text/javascript">
 	$(".pagination a").live('click',function(){

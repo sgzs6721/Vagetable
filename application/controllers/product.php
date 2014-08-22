@@ -176,7 +176,7 @@ class Product extends MY_Controller{
 
 			$config['base_url']    = site_url('product/list_products');
 			$config['total_rows']  = $this->products->get_product_number();
-			$config['per_page']    = 20;
+			$config['per_page']    = 2;
 			$config['first_link']  = '第一页';
 			$config['last_link']   = '最后一页';
 			$config['uri_segment'] = 3;
