@@ -18,4 +18,12 @@ class MY_Controller extends CI_Controller {
 		else
 			return false;
 	}
+
+	public function check_user_login() {
+
+		if (isset($this->session->userdata['userName']))
+			return $this->session->userdata['userName'];
+		else
+			return false;
+	}
 }

@@ -127,6 +127,14 @@
                     "alertTextOk": "* 此名称可以使用",
                     "alertTextLoad": "* 正在确认名称是否有其他人使用，请稍等。"
                 },
+                "ajaxUserCall": {
+                    "url": "ajaxValidateFieldUserTest",
+                    // you may want to pass extra data on the ajax call
+                    "extraData": "name=eric",
+                    "alertText": "* 此名称已被其他人使用",
+                    "alertTextOk": "* 此名称可以使用",
+                    "alertTextLoad": "* 正在确认名称是否有其他人使用，请稍等。"
+                },
                 "ajaxProductCall": {
                     "url": "ajaxValidateFieldProduct",
                     // you may want to pass extra data on the ajax call
